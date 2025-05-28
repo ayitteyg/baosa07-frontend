@@ -1,0 +1,54 @@
+<app-navbar></app-navbar> <br><br>
+
+<div class="container mt-5">
+
+
+
+    <div class="card shadow">
+        <div class="card-header main-btn-color text-white">
+            <h4><i class="bi bi-calendar-event me-2"></i>Create New Event</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+                <!-- Event Type -->
+                <div class="mb-3">
+                    <label for="event_id" class="form-label">Event Type</label>
+                    <select class="form-select" id="event_id" formControlName="event_id">
+            <option value="">Select event type</option>
+            <option *ngFor="let eventType of eventTypes" [value]="eventType.id">
+              {{ eventType.name }}
+            </option>
+          </select>
+                </div>
+
+                <!-- Member -->
+                <div class="mb-3">
+                    <label for="member_id" class="form-label">Member</label>
+                    <select class="form-select" id="member_id" formControlName="member_id">
+            <option value="">Select member</option>
+            <option *ngFor="let member of members" [value]="member.id">
+              {{ member.name }} ({{ member.contact }})
+            </option>
+          </select>
+                </div>
+
+                <!-- Event Date -->
+                <div class="mb-3">
+                    <label for="event_date" class="form-label">Event Date</label>
+                    <input type="date" class="form-control" id="event_date" formControlName="event_date" [max]="today">
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label for="event_description" class="form-label">Description</label>
+                    <textarea class="form-control" id="event_description" rows="3" formControlName="event_description"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-outline-success" [disabled]="!eventForm.valid">
+                 <i class="bi bi-save me-1"></i> Save Event
+                 </button>
+            </form>
+        </div>
+    </div>
+</div>

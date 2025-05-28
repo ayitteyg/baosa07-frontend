@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>
+            <i class="bi bi-list-ul me-2"></i>Payment Records
+        </h2>
+        <a routerLink="/payments/new" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-1"></i> New Payment
+        </a>
+    </div>
+
+    <div *ngIf="isLoading" class="text-center my-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Loading payments...</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+
+    <div *ngIf="!isLoading && payments.length === 0" class="alert alert-info">
+        No payment records found.
+    </div>
+
+    <div *ngIf="!isLoading && payments.length > 0" class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Payee</th>
+                    <th class="text-end">Amount</th>
+                    <th>Details</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let payment of payments">
+                    <td>{{ payment.payment_date | date }}</td>
+                    <td>{{ payment.payment_to.name }}</td>
+                    <td class="text-end">{{ formatCurrency(payment.amount) }}</td>
+                    <td>{{ payment.payment_details || '-' }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary me-1">
+              <i class="bi bi-eye"></i>
+            </button>
+                        <button class="btn btn-sm btn-outline-secondary">
+              <i class="bi bi-pencil"></i>
+            </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

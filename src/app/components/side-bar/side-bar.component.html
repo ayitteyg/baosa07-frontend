@@ -1,0 +1,21 @@
+<p>side-bar works!</p>
+<!-- Sidebar Toggle Button -->
+<button class="btn btn-" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideMenu" aria-controls="sideMenu">
+  ☰ Menu
+</button>
+
+<!-- Sidebar Drawer -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="sideMenu" aria-labelledby="sideMenuLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sideMenuLabel">Sidebar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="list-group">
+            <li class="list-group-item"><a routerLink="/dashboard">Dashboard</a></li>
+            <li class="list-group-item"><a routerLink="/payments">Payments</a></li>
+            <li class="list-group-item"><a routerLink="/receipts">Receipts</a></li>
+            <li class="list-group-item"><a routerLink="/events">Events</a></li>
+        </ul>
+    </div>
+</div>

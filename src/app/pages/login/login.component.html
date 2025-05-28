@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+<div class="container mt-5"> <br><br>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-1">
+            <div class="card">
+                <div class="card-logo mb-0 main-bg-colorr ">
+                    <img src="images/baosa.png" alt="" width="60px" height="60px">
+                    <p class="mt-1" style="font-size: 16px;">Bekwai Adventist Old Student Association -07</p>
+                </div>
+                <div class="card-body">
+                    <form #formData [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <!-- <form #formData ="ngForm"  (ngSubmit)="onSubmit(formData)"> -->
+
+                        <!-- Username field -->
+                        <div class="mb-3">
+                            <!-- <label for="username" class="form-label">Username</label> -->
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                <i class="bi bi-person"></i> <!-- Bootstrap Icons -->
+                              </span>
+                                <input type="text" placeholder="username" class="form-control" id="username" formControlName="username" [ngClass]="{ 'is-invalid': isSubmitted && formControls['username'].errors }" />
+                            </div>
+
+                            <div *ngIf="isSubmitted && formControls['username'].errors" class="invalid-feedback d-block">
+                                <div *ngIf="formControls['username'].errors['required']">Username is required</div>
+                            </div>
+                        </div>
+
+
+
+                        <!--password input-->
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                <i class="bi bi-lock"></i> <!-- Bootstrap Icons -->
+                              </span>
+                                <input type="password" placeholder="password" class="form-control" id="password" formControlName="password" [ngClass]="{ 'is-invalid': isSubmitted && formControls['password'].errors }" />
+                            </div>
+
+                            <div *ngIf="isSubmitted && formControls['password'].errors" class="invalid-feedback d-block">
+                                <div *ngIf="formControls['password'].errors['required']">Password is required</div>
+                                <div *ngIf="formControls['password'].errors['minlength']">Password must be at least 6 characters</div>
+                            </div>
+                        </div>
+
+
+                        <!-- Remember me checkbox -->
+                        <!-- <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label text-muted" for="rememberMe">Remember me</label>
+                        </div> -->
+
+                        <!-- Error message -->
+                        <div *ngIf="errorMessage" class="alert alert-danger">
+                            {{ errorMessage }}
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn main-btn-color">Login</button>
+                        </div>
+
+                        <!-- Register link -->
+                        <!-- <div class="mt-3 text-center d-grid m-2">
+                            <p> <span class="text-muted text-danger">Don't have an account? </span> <a routerLink="signup">Sign up</a></p>
+                        </div> -->
+
+                        <!-- <div class="d-grid m-2">
+                            <span class="text-muted text-danger">Don't have an account? </span>
+                            <button type="button" class="btn btn-outline-warning text-secondary"><a routerLink="signup">Sign up</a></button>
+                        </div> -->
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-5">
+        <p>All Right Reserved ©2025, powered by ayigoTech</p>
+    </div>
+</div>

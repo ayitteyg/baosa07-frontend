@@ -1,0 +1,39 @@
+<app-navbar></app-navbar> <br><br>
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header main-btn-color text-white">
+            <h4>Record New Payment</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="payment_to" class="form-label">Payee</label>
+                    <select class="form-select" id="payment_to" formControlName="payment_to">
+                        <option value="">Select member</option>
+                        <option *ngFor="let member of members" [value]="member.id">
+                        {{ member.name }}
+                        </option>
+                   </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="payment_date" class="form-label">Payment Date</label>
+                    <input type="date" class="form-control" id="payment_date" formControlName="payment_date" [max]="today">
+                </div>
+
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount (GH₵)</label>
+                    <input type="number" step="0.01" class="form-control" id="amount" formControlName="amount" placeholder="0.00">
+                </div>
+
+                <div class="mb-3">
+                    <label for="payment_details" class="form-label">Payment Details</label>
+                    <textarea class="form-control" id="payment_details" rows="3" formControlName="payment_details"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="!paymentForm.valid">Submit Payment</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<app-navbar></app-navbar> <br><br>
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header main-btn-color text-white">
+            <h4>Submit New Receipt</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="receiptForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="member" class="form-label">Member</label>
+                    <select class="form-select" id="member" formControlName="member_id">
+            <option value="">Select member</option>
+            <option *ngFor="let member of members" [value]="member.id">
+              {{ member.name }}
+            </option>
+          </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="receipt_date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="receipt_date" formControlName="receipt_date" [max]="today">
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" id="category" formControlName="category">
+            <option value="">Select category</option>
+            <option *ngFor="let cat of categories" [value]="cat.value">
+              {{ cat.label }}
+            </option>
+          </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount (GH₵)</label>
+                    <input type="number" step="0.01" class="form-control" id="amount" formControlName="amount" placeholder="0.00">
+                </div>
+
+                <div class="mb-3">
+                    <label for="detail" class="form-label">Details</label>
+                    <textarea class="form-control" id="detail" rows="3" formControlName="detail"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-outline-success" [disabled]="!receiptForm.valid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

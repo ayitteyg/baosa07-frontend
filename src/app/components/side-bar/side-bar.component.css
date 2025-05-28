@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@200..900&display=swap');
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.main-btn-color {
+    background-color: rgb(35, 50, 61) !important;
+}
+
+.offcanvas {
+    width: 250px;
+}
+
+@media (max-width: 768px) {
+    * {
+        font-size: 13px;
+    }
+    .card {
+        max-width: 80%;
+        margin: 10px auto;
+        margin-bottom: 20px;
+    }
+    .nav-item .badge {
+        font-size: 0.6rem;
+        transform: translate(40%, -30%);
+    }
+}
