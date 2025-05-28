@@ -11,7 +11,7 @@ import { MemberDashboardComponent } from './pages/member-dashboard/member-dashbo
 
 
 const routes: Routes = [
-  { path:'', component:NavbarComponent },
+  { path:'', component:LoginComponent },
   { path:'login', component:LoginComponent },
   { path:'members', component:MemberDashboardComponent },
   { path: 'member/receipts', component: ReceiptsDashboardComponent},
