@@ -1,7 +1,7 @@
 services:
   - type: static
-    name: my-angular-app
-    repo: https://github.com/your-username/your-angular-repo
+    name: baosa-07
+    repo: https://github.com/ayitteyg/baosa07-frontend.git
     branch: main
     buildCommand: npm install && npm run build --configuration production
     publishDir: dist/frontend
