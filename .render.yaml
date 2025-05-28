@@ -4,7 +4,7 @@ services:
     repo: https://github.com/ayitteyg/baosa07-frontend.git
     branch: main
     buildCommand: npm install && npm run build --configuration production
-    publishDir: dist/frontend
+    publishDir: dist/frontend/browser
     redirects:
       - source: /*
         destination: /index.html
