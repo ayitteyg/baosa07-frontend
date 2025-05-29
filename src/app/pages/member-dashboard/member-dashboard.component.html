@@ -1,9 +1,12 @@
 <app-navbar></app-navbar><br><br>
 
-<div class="container mt-5">
-    <!-- Summary Cards -->
-    <div class="row mb-4">
-        <div class="col-md-2 mb-3">
+
+
+
+<div class="container mt-3">
+    <!-- Summary Cards - Modified for mobile -->
+    <div class="row mb-4 mobile-scroll">
+        <div class="col-md-2 col-6 mb-3 summary-card-mobile">
             <div class="card text-white bg-primary h-100">
                 <div class="card-body">
                     <h5 class="card-title">Total Members</h5>
@@ -11,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2 mb-3">
+        <div class="col-md-2 col-6 mb-3 summary-card-mobile">
             <div class="card text-white bg-success h-100">
                 <div class="card-body">
                     <h5 class="card-title">Male Members</h5>
@@ -19,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2 mb-3">
+        <div class="col-md-2 col-6 mb-3 summary-card-mobile">
             <div class="card text-white bg-info h-100">
                 <div class="card-body">
                     <h5 class="card-title">Female Members</h5>
@@ -27,7 +30,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2 mb-3">
+        <div class="col-md-2 col-6 mb-3 summary-card-mobile">
             <div class="card text-white bg-warning h-100">
                 <div class="card-body">
                     <h5 class="card-title">Married Members</h5>
@@ -35,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2 mb-3">
+        <div class="col-md-2 col-6 mb-3 summary-card-mobile">
             <div class="card text-white bg-warning h-100">
                 <div class="card-body">
                     <h5 class="card-title">Single Members</h5>
@@ -43,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2 mb-3">
+        <div class="col-md-2 col-6 mb-3 summary-card-mobile">
             <div class="card text-white main-btn-color h-100">
                 <div class="card-body">
                     <h5 class="card-title">Active Members</h5>
@@ -53,25 +56,18 @@
         </div>
     </div>
 
-    <!-- Add Member Button -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Members List</h2>
-        <button class="btn btn-primary" (click)="navigateToCreate()">
-      <i class="bi bi-plus-circle"></i> Add New Member
-    </button>
+    <!-- Add Member Button - Adjusted for mobile -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
+        <h2 class="mb-2 mb-md-0">Members List</h2>
+        <button class="btn btn-primary mt-2 mt-md-0">
+            <i class="bi bi-plus-circle"></i> Add New Member
+        </button>
     </div>
 
-    <!-- Loading Indicator -->
-    <div *ngIf="isLoading" class="text-center my-5">
-        <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </div>
-
-    <!-- Members List and Details -->
-    <div class="row">
+    <!-- Members List and Details - Modified for mobile -->
+    <div class="row mobile-stack">
         <!-- Members List -->
-        <div class="col-md-5">
+        <div class="col-md-5 mobile-full-width">
             <div class="list-group">
                 <a *ngFor="let member of members" href="javascript:void(0)" class="list-group-item list-group-item-action" (click)="showMemberDetails(member)" [class.active]="selectedMember?.id === member.id">
                     <i class="bi bi-person-circle me-2"></i> {{ member.name }}
@@ -79,8 +75,16 @@
             </div>
         </div>
 
+        <!-- Loading Indicator -->
+        <div *ngIf="isLoading" class="text-center my-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+
         <!-- Member Details -->
-        <div class="col-md-7">
+        <div class="col-md-7 mobile-full-width">
             <div *ngIf="selectedMember" class="card">
                 <div class="card-header bg-primary text-white">
                     <h5 class="mb-0">Member Details</h5>

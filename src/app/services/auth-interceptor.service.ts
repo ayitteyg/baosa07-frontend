@@ -15,16 +15,18 @@ import { AuthService } from './auth.service';
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.authService.getToken();
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+      if (req.url.includes('/token-auth/')) {
+        return next.handle(req);  // Skip adding Authorization for login
+      }
 
-    if (token) {
-      const cloned = req.clone({
-        headers: req.headers.set('Authorization', `Token ${token}`)
-      });
-      return next.handle(cloned);
+      const token = this.authService.getToken();
+      if (token) {
+        const cloned = req.clone({
+          headers: req.headers.set('Authorization', `Token ${token}`)
+        });
+        return next.handle(cloned);
+      }
+      return next.handle(req);
     }
-
-    return next.handle(req);
-  }
 }
