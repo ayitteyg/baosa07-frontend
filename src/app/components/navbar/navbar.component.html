@@ -14,13 +14,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto mb-2 mb-lg-0">
 
-                <!-- <div class="input-group" style="width: 300px;">
-                    <span class="input-group-text">
-                    <i class="bi bi-envelope"></i> 
-                    </span>
-                    <input class="form-control me-2 text-muted" type="search" placeholder="Send Message" aria-label="Search" [(ngModel)]="searchQuery" (input)="onSearchChange()" />
-                </div> -->
-
 
                 <li class="nav-item" *ngIf="isLoggedIn">
                     <a class="nav-link disabled" tabindex="-1">
@@ -30,39 +23,6 @@
 
             </ul>
 
-
-
-
-
-
-
-
-            <!-- <li class="nav-item position-relative mx-3" *ngIf="isLoggedIn">
-                <div style="position: relative; display: inline-block;">
-                    <a class="nav-link" (click)="goToNotifications()" style="cursor: pointer;">
-                        <i class="bi bi-bell" style="font-size: 1.2rem;"></i>
-                        <span *ngIf="notificationCount > 0" class="badge rounded-pill bg-danger" style="position: absolute; top: -5px; right: -5px; font-size: 0.7rem;">
-                        {{ notificationCount }}
-                        <span class="visually-hidden">unread notifications</span>
-                        </span>
-                    </a>
-                </div>
-            </li> -->
-
-
-            <!-- Dropdown Nav Item
-            <li class="nav-item dropdown" *ngIf="isLoggedIn">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Action
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" routerLink="/receipts/new">Add Receipts</a></li>
-                    <li><a class="dropdown-item" routerLink="/payments/new">Record Payment</a></li>
-                    <li><a class="dropdown-item" routerLink="/settings">Financial summary</a></li>
-                    <li><a class="dropdown-item" routerLink="/settings">Report</a></li>
-                    <li><a class="dropdown-item" routerLink="/homepage">homepage</a></li>
-                </ul>
-            </li> -->
 
             <div class="actions">
                 <button *ngIf="!isLoggedIn" routerLink="/login" class="btn main-btn-color text-light">

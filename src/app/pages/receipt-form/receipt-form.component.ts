@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReceiptService } from '../../services/receipt.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-receipt-form',
@@ -24,7 +25,8 @@ export class ReceiptFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private receiptService: ReceiptService,
-    private router: Router
+    private router: Router, 
+    private notification: NotificationService
   ) {
     this.receiptForm = this.fb.group({
       member_id: ['', Validators.required],
@@ -54,15 +56,19 @@ export class ReceiptFormComponent implements OnInit {
     if (this.receiptForm.valid) {
       this.receiptService.createReceipt(this.receiptForm.value).subscribe({
         next: (response) => {
-          alert('Receipt submitted successfully!');
+         // alert('Receipt submitted successfully!');
+          this.notification.showSuccess('Receipt created successfully!');
           this.router.navigate(['/receipts']);
         },
         
         error: (err) => {
           console.error('Error submitting receipt:', err);
-          alert('Error submitting receipt. Please try again.');
+         // alert('Error submitting receipt. Please try again.');
+           this.notification.showError('Failed to create receipt. Please try again.');
         }
       });
     }
   }
+
+  
 }

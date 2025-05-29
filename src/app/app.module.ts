@@ -18,6 +18,7 @@ import { PaymentFormComponent } from './pages/payment-form/payment-form.componen
 import { PaymentListComponent } from './pages/payment-list/payment-list.component';
 import { EventFormComponent } from './pages/event-form/event-form.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -44,6 +45,7 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
     ReactiveFormsModule,  // Required for forms
     CommonModule,
     FormsModule,
+   
   ],
 
 

@@ -13,7 +13,35 @@ body {
     /* Smooth iOS scroll */
 }
 
+.toast-success {
+    background-color: #4caf50;
+    /* green */
+    color: white;
+}
+
+.toast-error {
+    background-color: #f44336;
+    /* red */
+    color: white;
+}
+
+.toast-info {
+    background-color: #2196f3;
+    /* blue */
+    color: white;
+}
+
 app-root {
     display: block;
     height: 100%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }

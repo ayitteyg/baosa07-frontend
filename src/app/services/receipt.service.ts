@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,11 @@ export class ReceiptService {
  private apiUrl = environment.apiUrl;
  //private apiUrl = 'http://127.0.0.1:8000/api'; // Base URL // Update with your Django API URL
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private notification: NotificationService
+
+  ) { }
 
   getMemberReceipts(memberId: number): Observable<any> {
    return this.http.get(`${this.apiUrl}/receipts/member/${memberId}/`, {

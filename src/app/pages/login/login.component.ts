@@ -18,6 +18,8 @@ export class LoginComponent {
   loginForm: FormGroup;
   isSubmitted = false;
   errorMessage = '';
+  // Add this property
+  isLoading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,10 +42,14 @@ export class LoginComponent {
 
 onSubmit() {
   this.isSubmitted = true;
+   
 
   if (this.loginForm.invalid) {
     return;
   }
+ 
+  //show spinner when credentials is submitted
+  this.isLoading = true;
 
   const { username, password } = this.loginForm.value;
 
@@ -70,8 +76,12 @@ onSubmit() {
     error: (err) => { 
       this.errorMessage = 'Invalid username or password';
        console.error('Login error:', err.error);
+       this.isLoading = false; // Hide spinner on error
        this.errorMessage = err.error?.non_field_errors?.[0] || 'Login failed';
-    }
+    },
+    complete: () => {
+        this.isLoading = false; // Hide spinner when complete
+      }
   });
 }
 

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaymentService } from '../../services/payment.service';
 import { ReceiptService } from '../../services/receipt.service'; // Reusing member list
 import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-payments-form',
@@ -22,7 +23,8 @@ export class PaymentFormComponent implements OnInit {
     private fb: FormBuilder,
     private paymentService: PaymentService,
     private receiptService: ReceiptService, // Reusing member list
-    private router: Router
+    private router: Router,
+    private notification: NotificationService
   ) {
     this.paymentForm = this.fb.group({
       payment_to_id: ['', Validators.required],
@@ -58,10 +60,12 @@ export class PaymentFormComponent implements OnInit {
   this.paymentService.createPayment(formValue).subscribe({
     next: (res) => {
       console.log('Payment created:', res);
+      this.notification.showSuccess('Payment Created successfully!');
       this.paymentForm.reset(); // optional
     },
     error: (err) => {
       console.error('Error submitting payment:', err);
+      this.notification.showError('Failed to create Payment. Please try again.');
     }
   });
 }
