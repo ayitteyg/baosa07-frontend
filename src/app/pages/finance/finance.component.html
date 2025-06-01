@@ -1,0 +1,159 @@
+<app-navbar></app-navbar> <br><br>
+<!-- Finance Summary Cards -->
+<div class="card mb-5"> <br><br>
+    <div class="card-headerr text-center">
+        <i class="bi bi-bar-chart"></i>
+        <h5 class="mb-0">Finance Summary</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <!-- Total Receipts -->
+            <div class="row receipt-card">
+
+                <div class="col-sm-12 col-md-4 mb-3 summary-card-mobile">
+                    <div class="card text-white bg-primaryy h-100">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center text-center" style="height: 100%;">
+                            <h6 class="card-title-r">Total Receipts</h6>
+                            <p class="card-text text-success h4">{{ formatCurrency(summary.total_receipts) }}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12 col-md-4 mb-3 summary-card-mobile">
+                    <div class="card text-white bg-primaryy h-100">
+                        <div class="card-body">
+                            <!-- Breakdown as cards -->
+                            <div class="mt-3">
+                                <div class="card bg-light mb-2 text-dark mx-auto">
+                                    <div class="card-body py-2 px-3">
+                                        <strong>Balance B/F:</strong> {{ formatCurrency(summary.bal_bf) }}
+                                    </div>
+                                </div>
+                                <div class="card bg-light mb-2 text-dark mx-auto">
+                                    <div class="card-body py-2 px-3">
+                                        <strong>Total Dues:</strong> {{ formatCurrency(summary.total_dues) }}
+                                    </div>
+                                </div>
+                                <div class="card bg-light mb-2 text-dark mx-auto">
+                                    <div class="card-body py-2 px-3">
+                                        <strong>Seed Fund:</strong> {{ formatCurrency(summary.total_seed_fund) }}
+                                    </div>
+                                </div>
+                                <div class="card bg-light mb-2 text-dark mx-auto">
+                                    <div class="card-body py-2 px-3">
+                                        <strong>Contribution:</strong> {{ formatCurrency(summary.total_contribution) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-12 col-md-4 mb-3 summary-card-mobile">
+                    <div class="card text-white bg-primaryy h-100">
+                        <div class="card-body">
+
+                            <!-- Toggle for yearly breakdown -->
+                            <div class="mt-3 toggle-text">
+                                <a href="#" (click)="toggleYearly('receipts'); $event.preventDefault()">
+                            {{ showYearly['receipts'] ? 'Hide' : 'Show' }} Yearly Breakdown
+                            </a>
+                            </div>
+
+                            <!-- Yearly Breakdown Table -->
+                            <div *ngIf="showYearly['receipts']" class="table-responsive mt-2">
+                                <table class="table table-sm table-bordered bg-white text-dark  mx-auto">
+                                    <thead class="table-success">
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Category</th>
+                                            <th class="text-end">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of yearlyReceipts">
+                                            <td>{{ item.year }}</td>
+                                            <td>{{ item.category }}</td>
+                                            <td class="text-end">{{ formatCurrency(item.total) }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- Total Payments -->
+            <div class="row payment-card">
+
+                <div class="col-sm-12 col-md-6 mb-3 summary-card-mobile">
+                    <div class="card text-white bg-primaryy h-100">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center text-center" style="height: 100%;">
+                            <h6 class="card-title-p">Total Payments</h6>
+                            <p class="card-text text-info">{{ formatCurrency(total_payments) }}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-12 col-md-6 mb-3 summary-card-mobile">
+                    <div class="card text-white bg-primaryy h-100">
+                        <div class="card-body">
+                            <!-- Toggle for payment details -->
+                            <div class="m-3 toggle-text">
+                                <a href="#" (click)="toggleYearly('payments'); $event.preventDefault()">
+                            {{ showYearly['payments'] ? 'Hide' : 'Show' }} Payment Details
+                            </a>
+                            </div>
+
+                            <!-- Payment Details Table -->
+                            <div *ngIf="showYearly['payments']" class="table-responsive mt-3">
+                                <table class="table table-sm table-bordered bg-white text-dark  mx-auto">
+                                    <thead class="table-danger">
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Payment To</th>
+                                            <th class="text-end">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let p of paymentsDetails">
+                                            <td>{{ p.year }}</td>
+                                            <td>{{ p.payment_to__name }}</td>
+                                            <td class="text-end">{{ formatCurrency(p.amount) }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Current Balance -->
+            <div class="row">
+                <div class="card text-white bg-light mb-3">
+                    <div class="card-body">
+                        <h6 class="card-title-c">Current Balance</h6>
+                        <p class="card-text text-dark h4">{{ formatCurrency(currentBalance) }}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 
 export class NavbarComponent implements OnInit {
   username: string | null = null;
+  member_name:string |null=null;
   searchQuery: string = '';
   isLoggedIn: boolean = false;
   isExecutive:boolean=false;
@@ -25,7 +26,8 @@ export class NavbarComponent implements OnInit {
 
     if (user) {
       this.username = user.username;
-      this.isExecutive=user.isExexcutive;
+      this.isExecutive=user.isExecutive;
+      this.member_name = user.member_name
     }
 
     console.log('Logged in:', this.isLoggedIn, '| User:', this.username);

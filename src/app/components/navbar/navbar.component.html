@@ -2,11 +2,12 @@
     <div class="container-fluid">
 
         <a class="navbar-brand">
-            <img src="images/baosa.png" alt="" width="40px" height="40px" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideMenu" aria-controls="sideMenu"> BAOSA- <span class="text-danger">07</span>
+
+            <div>
+                <img *ngIf="!isLoggedIn" disabled src="images/baosa.png" alt="" width="40px" height="40px" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideMenu" aria-controls="sideMenu">
+                <img *ngIf="isLoggedIn" src="images/baosa.png" alt="" width="40px" height="40px" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideMenu" aria-controls="sideMenu">
+            </div>
         </a>
-
-
-
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -17,7 +18,7 @@
 
                 <li class="nav-item" *ngIf="isLoggedIn">
                     <a class="nav-link disabled" tabindex="-1">
-                    Welcome, {{ username }}
+                    Welcome, {{ member_name }}
                     </a>
                 </li>
 
@@ -51,29 +52,51 @@
     <div class="offcanvas-body main-btn-color">
         <ul class="list-group">
             <li class="list-group-item">
-                <a routerLink="/homepage"><i class="bi bi-house-door"></i> Homepage</a>
+                <a routerLink="/"><i class="bi bi-house-door"></i> Homepage</a>
             </li>
+
             <li class="list-group-item">
                 <a routerLink="/member/receipts"><i class="bi bi-speedometer2"></i> Dashboard</a>
             </li>
-            <li class="list-group-item">
-                <a routerLink="/receipts/new"><i class="bi bi-receipt"></i> Receipts</a>
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/receipts/new' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-receipt"></i> Receipts
+                </a>
             </li>
-            <li class="list-group-item">
-                <a routerLink="/payments/new"><i class="bi bi-cash-stack"></i> Payments</a>
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/payments/new' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-cash-stack"></i> Payments
+                </a>
             </li>
-            <li class="list-group-item">
-                <a routerLink="/event/new"><i class="bi bi-calendar-event"></i> Events</a>
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/event/new' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-calendar-event"></i> Events
+                </a>
             </li>
-            <li class="list-group-item">
-                <a routerLink="/finance"><i class="bi bi-graph-up"></i> Finance</a>
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/finance/summary' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-graph-up"></i> Finance
+                </a>
             </li>
-            <li class="list-group-item">
-                <a routerLink="/members"><i class="bi bi-people"></i> Members</a>
+
+
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/members' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-people"></i> Members
+                </a>
             </li>
-            <li class="list-group-item">
-                <a routerLink="/dues"><i class="bi bi-credit-card"></i> Dues</a>
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/dues' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-credit-card"></i> Dues
+                </a>
             </li>
         </ul>
     </div>
+
 </div>

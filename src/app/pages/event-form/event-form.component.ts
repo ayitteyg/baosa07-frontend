@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReceiptService } from '../../services/receipt.service'; // Reusing member list
 import { EventService } from '../../services/event.service';
 import { NotificationService } from '../../services/notification.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-event-form',
@@ -19,6 +20,10 @@ export class EventFormComponent implements OnInit {
   eventTypes: any[] = [];
   today = new Date().toISOString().split('T')[0];
 
+  eventSearchControl = new FormControl('');
+ filteredEventTypes: any[] = [];
+  showEventDropdown = false;
+
   constructor(
     private fb: FormBuilder,
     private eventService: EventService,
@@ -26,17 +31,24 @@ export class EventFormComponent implements OnInit {
     private router: Router,
     private notification: NotificationService
   ) {
-    this.eventForm = this.fb.group({
-      event_id: ['', Validators.required],
-      member_id: ['', Validators.required],
-      event_date: [this.today, Validators.required],
-      event_description: ['', Validators.required]
+      this.eventForm = this.fb.group({
+      event: ['', Validators.required],
+      event_date: ['', Validators.required],
+      event_description: ['', Validators.required],
+      member: ['', Validators.required]
     });
+
   }
 
   ngOnInit(): void {
     this.loadMembers();
     this.loadEventTypes();
+
+    this.eventSearchControl.valueChanges
+  .pipe(debounceTime(200))
+  .subscribe((searchTerm: string | null) => {
+    this.filterEventTypes(searchTerm || '');
+  });
   }
 
   loadMembers(): void {
@@ -59,6 +71,8 @@ export class EventFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.eventForm.valid) {
+
+      console.log(this.eventForm)
       this.eventService.createEvent(this.eventForm.value).subscribe({
         next: () => {
           //alert('Event created successfully!');
@@ -72,5 +86,30 @@ export class EventFormComponent implements OnInit {
         }
       });
     }
+
+    this.eventSearchControl.reset();
+    this.filteredEventTypes = [];
   }
+
+
+  filterEventTypes(searchTerm: string): void {
+  const lowerTerm = searchTerm.toLowerCase();
+  this.filteredEventTypes = this.eventTypes.filter(event =>
+    event.name.toLowerCase().includes(lowerTerm)
+  );
+}
+
+selectEventType(eventType: any): void {
+  this.eventForm.patchValue({ event: eventType.id });
+  this.eventSearchControl.setValue(eventType.name);
+  this.showEventDropdown = false;
+}
+
+hideEventDropdownWithDelay(): void {
+  setTimeout(() => {
+    this.showEventDropdown = false;
+  }, 200);
+}
+
+
 }

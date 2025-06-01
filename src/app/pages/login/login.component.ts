@@ -62,15 +62,16 @@ onSubmit() {
       localStorage.setItem('token', response.token);
       localStorage.setItem('currentUser', JSON.stringify({
         id: response.id,
+        member_name:response.member_name,
         username: response.username,
-        is_executive: response.is_executive,
+        isExecutive: response.isExecutive,
         
       }));
 
       console.log(localStorage)
       console.log(response.username, password);
 
-      this.router.navigate(['member/receipts']);
+      this.router.navigate(['/']);
       // this.router.navigate(['member/receipts']);
     },
     error: (err) => { 

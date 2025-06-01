@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@200..900&display=swap');
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.main-btn-color {
+    background-color: rgb(49, 75, 93) !important;
+}
+
+.cards {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.table th {
+    background-color: #f8f9fa;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.toggle-text a {
+    text-decoration: none;
+    color: rgb(152, 180, 42);
+}
+
+.card-title-r {
+    color: rgb(185, 104, 5);
+}
+
+.card-title-p {
+    color: rgb(247, 123, 28);
+}
+
+.card-title-c {
+    color: rgb(20, 67, 10);
+}
+
+.receipt-card {
+    border-radius: 5px;
+    border-top: 1px solid rgb(49, 75, 93) !important;
+    padding-top: 15px;
+    margin: auto;
+}
+
+.payment-card {
+    border-radius: 5px;
+    /* border: 1px solid rgb(49, 75, 93) !important; */
+    padding-top: 15px;
+    margin: auto;
+}
+
+.payment-card,
+.receipt-card p,
+p,
+h6 {
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    * {
+        font-size: 13px;
+    }
+    .card {
+        margin-bottom: 20px;
+    }
+}

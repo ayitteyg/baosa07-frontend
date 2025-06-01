@@ -1,21 +1,64 @@
-<p>side-bar works!</p>
-<!-- Sidebar Toggle Button -->
 <button class="btn btn-" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideMenu" aria-controls="sideMenu">
   ☰ Menu
 </button>
 
+
+
+
+
 <!-- Sidebar Drawer -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="sideMenu" aria-labelledby="sideMenuLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="sideMenuLabel">Sidebar</h5>
+    <div class="offcanvas-header main-btn-color">
+        <h5 class="offcanvas-title text-info" id="sideMenuLabel">Menu</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body">
+    <div class="offcanvas-body main-btn-color">
         <ul class="list-group">
-            <li class="list-group-item"><a routerLink="/dashboard">Dashboard</a></li>
-            <li class="list-group-item"><a routerLink="/payments">Payments</a></li>
-            <li class="list-group-item"><a routerLink="/receipts">Receipts</a></li>
-            <li class="list-group-item"><a routerLink="/events">Events</a></li>
+            <li class="list-group-item">
+                <a routerLink="/"><i class="bi bi-house-door"></i> <span>Homepage</span></a>
+            </li>
+
+            <li class="list-group-item">
+                <a routerLink="/member/receipts"><i class="bi bi-speedometer2"></i> Dashboard</a>
+            </li>
+
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/receipts/new' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-receipt"></i> Receipts
+                </a>
+            </li>
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/payments/new' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-cash-stack"></i> Payments
+                </a>
+            </li>
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/event/new' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-calendar-event"></i> Events
+                </a>
+            </li>
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/finance/summary' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-graph-up"></i> Finance
+                </a>
+            </li>
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/members' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-people"></i> Members
+                </a>
+            </li>
+
+            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
+                <a [routerLink]="isExecutive ? '/dues' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
+                    <i class="bi bi-credit-card"></i> <span class="text-warning">Dues</span>
+                </a>
+            </li>
         </ul>
     </div>
+
 </div>

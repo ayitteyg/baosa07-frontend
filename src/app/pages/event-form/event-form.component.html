@@ -11,23 +11,37 @@
         <div class="card-body">
             <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
                 <!-- Event Type -->
-                <div class="mb-3">
-                    <label for="event_id" class="form-label">Event Type</label>
-                    <select class="form-select" id="event_id" formControlName="event_id">
+                <!-- <div class="mb-3">
+                    <label for="event" class="form-label">Event Type</label>
+                    <select class="form-select" id="event" formControlName="event">
             <option value="">Select event type</option>
             <option *ngFor="let eventType of eventTypes" [value]="eventType.id">
               {{ eventType.name }}
             </option>
           </select>
+                </div> -->
+
+
+
+                <div class="mb-3 position-relative">
+                    <label for="eventSearch" class="form-label">Event Type</label>
+                    <input type="text" id="eventSearch" class="form-control" [formControl]="eventSearchControl" placeholder="Search event type" (focus)="showEventDropdown = true" (blur)="hideEventDropdownWithDelay()" />
+
+                    <div class="dropdown-menu show w-100 shadow-sm mt-1" *ngIf="showEventDropdown && filteredEventTypes.length > 0" style="max-height: 200px; overflow-y: auto; position: absolute; z-index: 1000;">
+                        <button class="dropdown-item" type="button" *ngFor="let eventType of filteredEventTypes" (click)="selectEventType(eventType)">
+      {{ eventType.name }}
+    </button>
+                    </div>
                 </div>
+
 
                 <!-- Member -->
                 <div class="mb-3">
-                    <label for="member_id" class="form-label">Member</label>
-                    <select class="form-select" id="member_id" formControlName="member_id">
+                    <label for="member" class="form-label">Member</label>
+                    <select class="form-select" id="member" formControlName="member">
             <option value="">Select member</option>
             <option *ngFor="let member of members" [value]="member.id">
-              {{ member.name }} ({{ member.contact }})
+              {{ member.name }}
             </option>
           </select>
                 </div>

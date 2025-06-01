@@ -8,10 +8,12 @@ import { ReceiptFormComponent } from './pages/receipt-form/receipt-form.componen
 import { PaymentFormComponent } from './pages/payment-form/payment-form.component';
 import { EventFormComponent } from './pages/event-form/event-form.component';
 import { MemberDashboardComponent } from './pages/member-dashboard/member-dashboard.component';
-
+import { CoverPageComponent } from './components/cover-page/cover-page.component';
+import { FinanceComponent } from './pages/finance/finance.component';
+import { MemberFormComponent } from './pages/member-form/member-form.component';
 
 const routes: Routes = [
-  { path:'', component:LoginComponent },
+  { path:'', component:CoverPageComponent},
   { path:'login', component:LoginComponent },
   { path:'members', component:MemberDashboardComponent },
   { path: 'member/receipts', component: ReceiptsDashboardComponent},
@@ -21,8 +23,10 @@ const routes: Routes = [
   { path: 'event', component: EventFormComponent },
    { path: 'event/new', component: EventFormComponent },
   { path: 'payments/:id/edit', component: PaymentFormComponent },
+  {path: 'finance/summary', component: FinanceComponent},
+  { path: 'members/create', component: MemberFormComponent },
 
-  { path: '**',   component:ReceiptsDashboardComponent },
+  { path: '**',   component:CoverPageComponent },
   
 ];
 

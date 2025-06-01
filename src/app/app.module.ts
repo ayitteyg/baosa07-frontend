@@ -19,6 +19,9 @@ import { PaymentListComponent } from './pages/payment-list/payment-list.componen
 import { EventFormComponent } from './pages/event-form/event-form.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CoverPageComponent } from './components/cover-page/cover-page.component';
+import { FinanceComponent } from './pages/finance/finance.component';
+import { MemberFormComponent } from './pages/member-form/member-form.component';
 
 
 
@@ -37,6 +40,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     PaymentListComponent,
     EventFormComponent,
     SideBarComponent,
+    CoverPageComponent,
+    FinanceComponent,
+    MemberFormComponent,
   ],
   imports: [
     BrowserModule,

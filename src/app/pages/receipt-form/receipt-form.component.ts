@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReceiptService } from '../../services/receipt.service';
 import { NotificationService } from '../../services/notification.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-receipt-form',
@@ -21,6 +22,9 @@ export class ReceiptFormComponent implements OnInit {
   ];
   members: any[] = [];
   today = new Date().toISOString().split('T')[0];
+  memberSearchControl = new FormControl('');
+  filteredMembers: any[] = [];
+  showDropdown = false;
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +43,11 @@ export class ReceiptFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadMembers();
+    this.memberSearchControl.valueChanges
+  .pipe(debounceTime(200))
+  .subscribe((searchTerm: string | null) => {
+    this.filterMembers(searchTerm || '');
+  });
   }
 
   loadMembers(): void {
@@ -68,7 +77,30 @@ export class ReceiptFormComponent implements OnInit {
         }
       });
     }
+
+     this.memberSearchControl.reset();
+    this.filteredMembers = [];
   }
+
+
+  filterMembers(searchTerm: string): void {
+  const lowerTerm = searchTerm.toLowerCase();
+  this.filteredMembers = this.members.filter(member =>
+    member.name.toLowerCase().includes(lowerTerm)
+  );
+}
+
+selectMember(member: any): void {
+  this.receiptForm.patchValue({ member_id: member.id });
+  this.memberSearchControl.setValue(member.name);
+  this.showDropdown = false;
+}
+
+hideDropdownWithDelay(): void {
+  setTimeout(() => {
+    this.showDropdown = false;
+  }, 200);
+}
 
   
 }

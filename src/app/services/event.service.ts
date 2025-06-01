@@ -20,10 +20,10 @@ export class EventService {
 
   createEvent(eventData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/events/`, {
-      event_id: eventData.event_id,
+      event: eventData.event,
       event_date: eventData.event_date,
       event_description: eventData.event_description,
-      member_id: eventData.member_id
+      member: eventData.member
     });
   }
 

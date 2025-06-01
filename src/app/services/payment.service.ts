@@ -17,7 +17,7 @@ export class PaymentService {
   // Create new payment
    createPayment(paymentData: any): Observable<any> {
   const payload = {
-    payment_to: +paymentData.payment_to_id, // ensure it's numeric
+    payment_to: +paymentData.payment_to, // ensure it's numeric
     payment_date: new Date(paymentData.payment_date).toISOString().split('T')[0],
     amount: +paymentData.amount,
     payment_details: paymentData.payment_details

@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<div class="container mt-5"> <br><br>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-1">
+            <div class="card">
+                <div class="card-logo mb-0 main-bg-colorr ">
+
+                    <p class="mt-1" style="font-size: 16px;">Bekwai Adventist Old Student Association -07</p>
+                </div>
+                <div class="card-body">
+                    <img src="images/welfare_icon.jpg" alt="" width="250px" height="300px">
+                </div>
+                <div class="actions">
+                    <button *ngIf="!isLoggedIn" routerLink="/login" class="btn main-btn-color text-light me-2">
+                            Sign In
+                        </button>
+
+                    <button *ngIf="isLoggedIn" class="btn btn-outline-danger">
+                            <app-side-bar></app-side-bar>
+                        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-2">
+        <p>All Right Reserved ©2025, powered by ayigoTech</p>
+    </div>
+</div>

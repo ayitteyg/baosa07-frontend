@@ -23,6 +23,7 @@ export class MemberDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+    this.members = this.members.map(member => ({ ...member, showDetails: false }));
   }
 
   loadData(): void {
@@ -58,4 +59,8 @@ export class MemberDashboardComponent implements OnInit {
   navigateToCreate(): void {
     this.router.navigate(['/members/new']);
   }
+
+  toggleDetails(member: any): void {
+  member.showDetails = !member.showDetails;
+}
 }

@@ -29,20 +29,21 @@ export class ReceiptsDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     // Safely get memberId from auth service
-    this.memberId = this.authService.getMemberId();
+    this.memberId = this.authService.getUserId();
 
     if (this.memberId) {
       this.loadData();
     } else {
       console.error('No memberId found. User might not be logged in.');
       this.isLoading = false;
-    }
+    } 
   }
 
   loadData(): void {
     this.receiptService.getReceiptSummary(this.memberId!).subscribe({
       next: (data) => {
         this.summary = data;
+        console.log(data)
         this.loadReceipts();
       },
       error: (err) => {

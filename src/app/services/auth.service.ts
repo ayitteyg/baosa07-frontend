@@ -44,6 +44,11 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+    checkAuthentication(): void {
+    const token = localStorage.getItem('token');
+    this.isAuthenticated = !!token;
+  }
+
   isLoggedIn(): boolean {
     // Check both local flag and token existence
     return this.isAuthenticated && !!localStorage.getItem('token');
@@ -64,6 +69,7 @@ export class AuthService {
     getUserId(): number | null {
     const user = localStorage.getItem('currentUser');
     if (user) {
+      console.log(user)
       return JSON.parse(user).id;
     }
     return null;

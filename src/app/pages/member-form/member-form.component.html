@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+<br><br>
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header main-btn-color text-white">
+            <h4>Register New Member</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" id="name" class="form-control" formControlName="name" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-select" id="gender" formControlName="gender">
+                        <option value="">Select gender</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="contact" class="form-label">Contact</label>
+                    <input type="text" id="contact" class="form-control" formControlName="contact" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" id="location" class="form-control" formControlName="location" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="work" class="form-label">Occupation</label>
+                    <input type="text" id="work" class="form-control" formControlName="work" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="marital_status" class="form-label">Marital Status</label>
+                    <input type="text" id="marital_status" class="form-control" formControlName="marital_status" />
+                    <select class="form-select" id="marital_status" formControlName="marital_status">
+                        <option value="">Marital Status</option>
+                        <option value="Married">Married</option>
+                        <option value="Single">Single</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="next_of_kin" class="form-label">Next of Kin</label>
+                    <input type="text" id="next_of_kin" class="form-control" formControlName="next_of_kin" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="next_of_kin_cont" class="form-label">Next of Kin Contact</label>
+                    <input type="text" id="next_of_kin_cont" class="form-control" formControlName="next_of_kin_cont" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" id="category" formControlName="category">
+            <option value="member">Member</option>
+            <option value="executive">Executive</option>
+          </select>
+                </div>
+
+                <button type="submit" class="btn btn-success" [disabled]="!memberForm.valid">
+          Submit Member
+        </button>
+            </form>
+        </div>
+    </div>
+</div>

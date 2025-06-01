@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="payment_to" class="form-label">Payee</label>
                     <select class="form-select" id="payment_to" formControlName="payment_to">
                         <option value="">Select member</option>
@@ -15,7 +15,25 @@
                         {{ member.name }}
                         </option>
                    </select>
+                </div> -->
+
+
+
+
+                <div class="mb-3 position-relative">
+                    <label for="payment_to" class="form-label">Payee</label>
+                    <input type="text" id="payment_to" class="form-control" [formControl]="memberSearchControl" (focus)="showDropdown = true" (blur)="hideDropdownWithDelay()" autocomplete="off" placeholder="Start typing to search..." />
+
+                    <!-- Dropdown card -->
+                    <div class="dropdown-card shadow" *ngIf="showDropdown && filteredMembers.length > 0">
+                        <div class="dropdown-item" *ngFor="let member of filteredMembers" (mousedown)="selectMember(member)">
+                            {{ member.name }}
+                        </div>
+                    </div>
                 </div>
+
+
+
 
                 <div class="mb-3">
                     <label for="payment_date" class="form-label">Payment Date</label>

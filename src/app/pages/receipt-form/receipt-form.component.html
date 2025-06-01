@@ -2,12 +2,15 @@
 
 <div class="container mt-5">
     <div class="card shadow">
+
+
         <div class="card-header main-btn-color text-white">
+
             <h4>Submit New Receipt</h4>
         </div>
         <div class="card-body">
             <form [formGroup]="receiptForm" (ngSubmit)="onSubmit()">
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="member" class="form-label">Member</label>
                     <select class="form-select" id="member" formControlName="member_id">
             <option value="">Select member</option>
@@ -15,7 +18,22 @@
               {{ member.name }}
             </option>
           </select>
+                </div> -->
+
+
+
+
+                <div class="mb-3 position-relative">
+                    <label for="memberSearch" class="form-label">Member</label>
+                    <input type="text" id="memberSearch" class="form-control" [formControl]="memberSearchControl" placeholder="Search member by name" (focus)="showDropdown = true" (blur)="hideDropdownWithDelay()" />
+
+                    <div class="dropdown-menu show w-100 shadow-sm mt-1" *ngIf="showDropdown && filteredMembers.length > 0" style="max-height: 200px; overflow-y: auto; position: absolute; z-index: 1000;">
+                        <button class="dropdown-item" type="button" *ngFor="let member of filteredMembers" (click)="selectMember(member)">
+      {{ member.name }}
+    </button>
+                    </div>
                 </div>
+
 
                 <div class="mb-3">
                     <label for="receipt_date" class="form-label">Date</label>
