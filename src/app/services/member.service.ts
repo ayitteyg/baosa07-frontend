@@ -27,6 +27,6 @@ export class MemberService {
   }
 
   getSummary(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/members/summary/`);
+    return this.http.get(`${this.apiUrl}/members-dashboard/summary/`);
   }
 }
