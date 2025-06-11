@@ -61,7 +61,8 @@ onSubmit() {
       // Save full user info
       localStorage.setItem('token', response.token);
       localStorage.setItem('currentUser', JSON.stringify({
-        id: response.id,
+        mid: response.mid,
+        usid:response.usid,
         member_name:response.member_name,
         username: response.username,
         isExecutive: response.isExecutive,

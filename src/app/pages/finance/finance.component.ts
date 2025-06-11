@@ -16,6 +16,7 @@ export class FinanceComponent implements OnInit {
   paymentsDetails: any[] = [];
   currentBalance: number = 0;
   showYearly: { [key: string]: boolean } = {};
+  isLoading = true;
 
   constructor(private financeService: FinanceService) {}
 
@@ -28,9 +29,15 @@ export class FinanceComponent implements OnInit {
         this.yearlyReceipts = data.yearly_receipts;
         this.paymentsDetails = data.payments_details;
         this.currentBalance = data.current_balance;
+        this.isLoading = false
       },
+      
       error: (err) => console.error('Failed to load finance summary:', err)
-    });
+    }
+  
+  );
+
+    
   }
 
   toggleYearly(category: string) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberService } from '../../services/member.service';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-member-dashboard',
   standalone: false,
@@ -15,15 +15,22 @@ export class MemberDashboardComponent implements OnInit {
   summary: any = {};
   selectedMember: any = null;
   isLoading = true;
+  isExecutive:boolean=false;
 
   constructor(
     private memberService: MemberService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.loadData();
     this.members = this.members.map(member => ({ ...member, showDetails: false }));
+    const user = this.authService.getUser();
+
+    if (user) {
+      this.isExecutive=user.isExexcutive;
+    }
   }
 
   loadData(): void {

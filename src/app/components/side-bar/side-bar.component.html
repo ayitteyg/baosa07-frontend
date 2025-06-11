@@ -47,17 +47,10 @@
                 </a>
             </li>
 
-            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
-                <a [routerLink]="isExecutive ? '/members' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
-                    <i class="bi bi-people"></i> Members
-                </a>
+            <li class="list-group-item">
+                <a routerLink="/members"><i class="bi bi-people"></i> Members</a>
             </li>
 
-            <li class="list-group-item" [ngClass]="{ 'text-warning': !isExecutive, 'disabled': !isExecutive }">
-                <a [routerLink]="isExecutive ? '/dues' : null" [style.pointerEvents]="!isExecutive ? 'none' : 'auto'" [style.opacity]="!isExecutive ? '0.6' : '1'" [style.cursor]="!isExecutive ? 'not-allowed' : 'pointer'">
-                    <i class="bi bi-credit-card"></i> <span class="text-warning">Dues</span>
-                </a>
-            </li>
         </ul>
     </div>
 

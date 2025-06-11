@@ -70,7 +70,7 @@ export class AuthService {
     const user = localStorage.getItem('currentUser');
     if (user) {
       console.log(user)
-      return JSON.parse(user).id;
+      return JSON.parse(user).usid;
     }
     return null;
   }
@@ -80,7 +80,7 @@ export class AuthService {
   const user = localStorage.getItem('currentUser');
   if (user) {
     try {
-      return JSON.parse(user).id;
+      return JSON.parse(user).mid;
     } catch (e) {
       return null;
     }

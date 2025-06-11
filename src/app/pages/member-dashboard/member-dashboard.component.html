@@ -6,8 +6,17 @@
 <div class="container mt-5">
     <!-- Summary Cards - Modified for mobile -->
     <div class="row mb-4 mobile-scroll">
+
+
+        <div *ngIf="isLoading" class="text-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+
         <div class="col-md-2 col-6 mb-3 summary-card-mobile">
-            <div class="card text-white bg-primary h-100">
+            <div class="card text-white bg-primary h-100" data-aos="zoom-in-up" data-aos-duration="3000">
                 <div class="card-body">
                     <h5 class="card-title">Total Members</h5>
                     <p class="card-text display-4">{{ summary.total_members || 0 }}</p>
@@ -15,7 +24,7 @@
             </div>
         </div>
         <div class="col-md-2 col-6 mb-3 summary-card-mobile">
-            <div class="card text-white bg-success h-100">
+            <div class="card text-white bg-success h-100" data-aos="zoom-in-up" data-aos-duration="3000">
                 <div class="card-body">
                     <h5 class="card-title">Male Members</h5>
                     <p class="card-text display-4">{{ summary.total_male || 0 }}</p>
@@ -23,7 +32,7 @@
             </div>
         </div>
         <div class="col-md-2 col-6 mb-3 summary-card-mobile">
-            <div class="card text-white bg-info h-100">
+            <div class="card text-white bg-info h-100" data-aos="zoom-in-up" data-aos-duration="3000">
                 <div class="card-body">
                     <h5 class="card-title">Female Members</h5>
                     <p class="card-text display-4">{{ summary.total_female || 0 }}</p>
@@ -31,7 +40,7 @@
             </div>
         </div>
         <div class="col-md-2 col-6 mb-3 summary-card-mobile">
-            <div class="card text-white bg-success h-100">
+            <div class="card text-white bg-success h-100" data-aos="zoom-in-up" data-aos-duration="3000">
                 <div class="card-body">
                     <h5 class="card-title">Married Members</h5>
                     <p class="card-text display-4">{{ summary.total_married || 0 }}</p>
@@ -39,7 +48,7 @@
             </div>
         </div>
         <div class="col-md-2 col-6 mb-3 summary-card-mobile">
-            <div class="card text-white bg-info h-100">
+            <div class="card text-white bg-info h-100" data-aos="zoom-in-up" data-aos-duration="3000">
                 <div class="card-body">
                     <h5 class="card-title">Single Members</h5>
                     <p class="card-text display-4">{{ summary.total_single || 0 }}</p>
@@ -47,24 +56,32 @@
             </div>
         </div>
         <div class="col-md-2 col-6 mb-3 summary-card-mobile">
-            <div class="card text-white main-btn-color h-100">
-                <div class="card-body">
-                    <h5 class="card-title">Active Members</h5>
-                    <p class="card-text display-4">{{ summary.total_married || 0 }}</p>
+            <div class="card text-white main-btn-color h-100" data-aos="zoom-in-up" data-aos-duration="3000">
+                <div class="card-body d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Active</h5>
+                        <p class="card-text text-info display-4">{{ summary.total_active || 0 }}</p>
+                    </div>
+
+                    <div>
+                        <h5 class="card-title">Non Active</h5>
+                        <p class="card-text text-warning display-4">{{ summary.total_inactive || 0 }}</p>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Add Member Button - Adjusted for mobile -->
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
+    <!-- <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
         <h2 class="mb-2 mb-md-0">Members List</h2>
-        <button routerLink="/members/create" class="btn btn-primary mt-2 mt-md-0">
+        <button *ngIf="!isExecutive" disabled routerLink="/members/create" class="btn btn-primary mt-2 mt-md-0">
             <i class="bi bi-plus-circle"></i> Add New Member
         </button>
-    </div>
+    </div> -->
 
-    <!-- Members List and Details - Modified for mobile -->
+
     <!-- Members List and Details - Mobile Optimized -->
     <div class="row mobile-stack">
         <div class="col-md-12 mobile-full-width">

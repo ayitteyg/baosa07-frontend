@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,  OnInit} from '@angular/core';
 import { AuthService } from './services/auth.service';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { AuthService } from './services/auth.service';
   standalone: false,
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'frontend';
 
 
@@ -15,6 +16,10 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.authService.checkAuthentication();
+     AOS.init({
+      duration: 1200,
+      once: true
+    });
   }
 
 

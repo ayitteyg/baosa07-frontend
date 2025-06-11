@@ -2,8 +2,24 @@
 <div class="container mt-5">
     <!-- Summary Card -->
     <div class="card mb-4">
-        <div class="card-header main-btn-color text-white">
+        <div class="card-header main-btn-color text-white d-flex justify-content-between">
             <h5 class="mb-0">Receipts Summary</h5>
+            <div>
+                <ng-container *ngIf="summary?.status === 'active'; else inactiveBlock">
+                    <h5 matTooltip="This member is in good standing and has no outstanding issues." class="mb-0">
+                        Status:
+                        <span>✅</span>
+                        <span class="active-member">Active</span>
+                    </h5>
+                </ng-container>
+
+                <ng-template #inactiveBlock>
+                    <h5 class="mb-0">
+                        Status: ⚠️ <span class="inactive-member">Inactive</span>
+                    </h5>
+                </ng-template>
+            </div>
+
         </div>
         <div class="card-body">
             <div class="row">
@@ -24,8 +40,17 @@
                             </div>
                             <div class="">
 
-                                <h6 class="card-title text-warning">{{ summary.dues_status }}</h6>
-                                <p class="card-text h4 text-warning">{{ formatCurrency(summary.dues_difference) }}</p>
+                                <div>
+                                    <ng-container *ngIf="summary?.dues_status === 'In advance'; else inarrearsBlock">
+                                        <h6 class="card-title text-info">In Advance</h6>
+                                        <p class="card-text h4 active-member"> + {{ formatCurrency(summary.dues_difference) }}</p>
+                                    </ng-container>
+
+                                    <ng-template #inarrearsBlock>
+                                        <h6 class="card-title text-warning">{{ summary.dues_status }}</h6>
+                                        <p class="card-text h4 inactive-member"> - {{ formatCurrency(summary.dues_difference) }}</p>
+                                    </ng-template>
+                                </div>
 
 
                             </div>

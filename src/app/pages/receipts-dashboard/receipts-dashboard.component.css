@@ -27,6 +27,14 @@
     overflow-x: auto;
 }
 
+.active-member {
+    color: aqua;
+}
+
+.inactive-member {
+    color: rgb(255, 98, 0);
+}
+
 @media (max-width: 768px) {
     * {
         font-size: 13px;
